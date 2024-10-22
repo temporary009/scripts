@@ -7,7 +7,7 @@ local Window = Library:Window({
     Size = UDim2.new(0, 250, 0, 150)
 })
 local Tab = Window:Tab({
-    Text = "Too Many Weapons by Agreed69"
+    Text = "Too Many Weapons by master"
 })
 local Section = Tab:Section({
     Text = "Exploit"
