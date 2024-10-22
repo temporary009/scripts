@@ -17,7 +17,7 @@ Section:Button({
     Text = "Kill All",
     Callback = function()
         for _, enemy in ipairs(game.Workspace.Enemies.dungeon:GetChildren()) do
-            hit:FireServer(enemy, 100, true, "item6_rarity1")
+            hit:FireServer(enemy, _G.damageAmount or 100, true, "item6_rarity1")
         end
     end
 })
@@ -28,7 +28,7 @@ Section:Check({
         _G.kill = bool
         while _G.kill do
             for _, enemy in ipairs(game.Workspace.Enemies.dungeon:GetChildren()) do
-                hit:FireServer(enemy, 100, true, "item6_rarity1")
+                hit:FireServer(enemy, _G.damageAmount or 100, true, "item6_rarity1")
             end
             wait(0.1)
         end
@@ -47,26 +47,3 @@ Section:Slider({
 })
 
 Tab:Select()
-
--- Use the slider value in the kill functions
-Section:Button({
-    Text = "Kill All",
-    Callback = function()
-        for _, enemy in ipairs(game.Workspace.Enemies.dungeon:GetChildren()) do
-            hit:FireServer(enemy, _G.damageAmount or 100, true, "item6_rarity1")
-        end
-    end
-})
-
-Section:Check({
-    Text = "Loop Kill All",
-    Callback = function(bool)
-        _G.kill = bool
-        while _G.kill do
-            for _, enemy in ipairs(game.Workspace.Enemies.dungeon:GetChildren()) do
-                hit:FireServer(enemy, _G.damageAmount or 100, true, "item6_rarity1")
-            end
-            wait(0.1)
-        end
-    end
-})
