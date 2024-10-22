@@ -4,22 +4,21 @@ local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/agree
 local Flags = Library.Flags
 local Window = Library:Window({
     Text = "❤",
-    Size = UDim2.new(0, 250, 0, 150)
+    Size = UDim2.new(0, 250, 0, 250),
+    Scrollable = true  -- Enable scrolling
 })
 local Tab = Window:Tab({
     Text = "Too Many Weapons by master"
 })
 local Section = Tab:Section({
-    Text = "Exploit"
+    Text = "Exploit - Current Damage: 1000"  -- Initial text for damage amount
 })
 
 local damageAmount = 1000  -- Default damage amount
 
--- Function to update damage display
+-- Function to update damage display (this will update the section text instead of adding new labels)
 local function updateDamageDisplay()
-    Section:Label({
-        Text = "Current Damage: " .. damageAmount
-    })
+    Section:SetText("Exploit - Current Damage: " .. damageAmount)  -- Update the section text
 end
 
 Section:Button({
@@ -43,8 +42,11 @@ Section:Check({
     end
 })
 
--- Increment Damage Button
-Section:Button({
+-- Horizontal Layout for Buttons (increase/decrease damage)
+local ButtonsRow = Section:Row()  -- Assuming the library supports Row for side-by-side positioning
+
+-- Increase Damage Button
+ButtonsRow:Button({
     Text = "Increase Damage (+500)",
     Callback = function()
         damageAmount = math.min(damageAmount + 500, 5000)  -- Max is 5000
@@ -52,8 +54,8 @@ Section:Button({
     end
 })
 
--- Decrement Damage Button
-Section:Button({
+-- Decrease Damage Button
+ButtonsRow:Button({
     Text = "Decrease Damage (-500)",
     Callback = function()
         damageAmount = math.max(damageAmount - 500, 500)  -- Min is 500
