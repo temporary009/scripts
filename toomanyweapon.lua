@@ -13,11 +13,13 @@ local Section = Tab:Section({
     Text = "Exploit"
 })
 
+local damageAmount = 1000  -- Default damage amount
+
 Section:Button({
     Text = "Kill All",
     Callback = function()
         for _, enemy in ipairs(game.Workspace.Enemies.dungeon:GetChildren()) do
-            hit:FireServer(enemy, _G.damageAmount or 100, true, "item6_rarity1")
+            hit:FireServer(enemy, damageAmount, true, "item6_rarity1")
         end
     end
 })
@@ -25,10 +27,9 @@ Section:Button({
 Section:Check({
     Text = "Loop Kill All",
     Callback = function(bool)
-        _G.kill = bool
-        while _G.kill do
+        while bool do
             for _, enemy in ipairs(game.Workspace.Enemies.dungeon:GetChildren()) do
-                hit:FireServer(enemy, _G.damageAmount or 100, true, "item6_rarity1")
+                hit:FireServer(enemy, damageAmount, true, "item6_rarity1")
             end
             wait(0.1)
         end
@@ -41,7 +42,7 @@ Section:Slider({
     Max = 5000,
     Default = 1000,
     Callback = function(value)
-        _G.damageAmount = value
+        damageAmount = value
     end
 })
 
