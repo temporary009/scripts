@@ -5,7 +5,7 @@ local Flags = Library.Flags
 local Window = Library:Window({
     Text = "❤",
     Size = UDim2.new(0, 250, 0, 250),
-    
+    Scrollable = true  -- Enable scrolling
 })
 local Tab = Window:Tab({
     Text = "Too Many Weapons by master"
@@ -42,12 +42,12 @@ Section:Check({
     end
 })
 
--- Horizontal Layout for Buttons (increase/decrease damage)
-local ButtonsRow = Section:Row()  -- Assuming the library supports Row for side-by-side positioning
-
+-- Manual positioning for side-by-side buttons
 -- Increase Damage Button
-ButtonsRow:Button({
+Section:Button({
     Text = "Increase Damage (+500)",
+    Size = UDim2.new(0, 110, 0, 30),  -- Set size of the button
+    Position = UDim2.new(0, 0, 0, 100),  -- Adjust positioning
     Callback = function()
         damageAmount = math.min(damageAmount + 500, 5000)  -- Max is 5000
         updateDamageDisplay()
@@ -55,8 +55,10 @@ ButtonsRow:Button({
 })
 
 -- Decrease Damage Button
-ButtonsRow:Button({
+Section:Button({
     Text = "Decrease Damage (-500)",
+    Size = UDim2.new(0, 110, 0, 30),  -- Set size of the button
+    Position = UDim2.new(0, 120, 0, 100),  -- Position it next to the Increase button
     Callback = function()
         damageAmount = math.max(damageAmount - 500, 500)  -- Min is 500
         updateDamageDisplay()
