@@ -15,6 +15,13 @@ local Section = Tab:Section({
 
 local damageAmount = 1000  -- Default damage amount
 
+-- Function to update damage display
+local function updateDamageDisplay()
+    Section:Label({
+        Text = "Current Damage: " .. damageAmount
+    })
+end
+
 Section:Button({
     Text = "Kill All",
     Callback = function()
@@ -36,14 +43,25 @@ Section:Check({
     end
 })
 
-Section:Slider({
-    Text = "Damage Amount",
-    Min = 500,
-    Max = 5000,
-    Default = 1000,
-    Callback = function(value)
-        damageAmount = value
+-- Increment Damage Button
+Section:Button({
+    Text = "Increase Damage (+500)",
+    Callback = function()
+        damageAmount = math.min(damageAmount + 500, 5000)  -- Max is 5000
+        updateDamageDisplay()
     end
 })
+
+-- Decrement Damage Button
+Section:Button({
+    Text = "Decrease Damage (-500)",
+    Callback = function()
+        damageAmount = math.max(damageAmount - 500, 500)  -- Min is 500
+        updateDamageDisplay()
+    end
+})
+
+-- Display the initial damage amount
+updateDamageDisplay()
 
 Tab:Select()
