@@ -5,7 +5,7 @@ local Flags = Library.Flags
 local Window = Library:Window({
     Text = "❤",
     Size = UDim2.new(0, 250, 0, 250),
-    Scrollable = true  -- Enable scrolling
+    
 })
 local Tab = Window:Tab({
     Text = "Too Many Weapons by master"
