@@ -10,17 +10,17 @@ local Window = Library:Window({
 local Tab = Window:Tab({
     Text = "Too Many Weapons by master"
 })
+
+-- Section with an initial text (damage amount)
 local Section = Tab:Section({
-    Text = "Exploit"
+    Text = "Exploit - Current Damage: 1000"  -- Initial damage display
 })
 
 local damageAmount = 1000  -- Default damage amount
 
--- Function to update damage display
+-- Function to update the section title with the current damage amount
 local function updateDamageDisplay()
-    Section:Label({
-        Text = "Current Damage: " .. damageAmount
-    })
+    Section:SetText("Exploit - Current Damage: " .. damageAmount)  -- Update the section text
 end
 
 Section:Button({
@@ -49,7 +49,7 @@ Section:Button({
     Text = "Increase Damage (+500)",
     Callback = function()
         damageAmount = math.min(damageAmount + 500, 5000)  -- Max is 5000
-        updateDamageDisplay()
+        updateDamageDisplay()  -- Update the section text when damage changes
     end
 })
 
@@ -58,7 +58,7 @@ Section:Button({
     Text = "Decrease Damage (-500)",
     Callback = function()
         damageAmount = math.max(damageAmount - 500, 500)  -- Min is 500
-        updateDamageDisplay()
+        updateDamageDisplay()  -- Update the section text when damage changes
     end
 })
 
