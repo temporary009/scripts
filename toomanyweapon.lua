@@ -35,12 +35,11 @@ Section:Check({
     end
 })
 
--- Add the slider
 Section:Slider({
     Text = "Damage Amount",
-    Min = 10,
-    Max = 1000,
-    Default = 100,
+    Min = 500,
+    Max = 5000,
+    Default = 1000,
     Callback = function(value)
         _G.damageAmount = value
     end
